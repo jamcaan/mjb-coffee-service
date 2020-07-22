@@ -18,11 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CoffeeController.class)
 class CoffeeControllerTest {
 
+
     @Autowired
     MockMvc mockMvc;
 
     @Autowired
     ObjectMapper objectMapper;
+
+
 
     @Test
     void getCoffeeById() throws Exception {
