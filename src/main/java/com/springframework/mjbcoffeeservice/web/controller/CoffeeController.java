@@ -3,6 +3,7 @@ package com.springframework.mjbcoffeeservice.web.controller;
 import com.springframework.mjbcoffeeservice.web.model.CoffeeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -22,13 +23,13 @@ public class CoffeeController {
     }
 
     @PostMapping
-    public ResponseEntity saveCoffee(@RequestBody CoffeeDto coffeeDto){
+    public ResponseEntity saveCoffee(@RequestBody @Validated CoffeeDto coffeeDto){
         //todo impl
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping("/{coffeeId}")
-    public ResponseEntity updateCoffeeById (@PathVariable("coffeeId") UUID coffeeId, @RequestBody CoffeeDto coffeeDto){
+    public ResponseEntity updateCoffeeById (@PathVariable("coffeeId") UUID coffeeId, @RequestBody @Validated CoffeeDto coffeeDto){
         //todo impl
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
