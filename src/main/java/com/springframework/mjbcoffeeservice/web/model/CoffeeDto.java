@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
@@ -33,7 +34,7 @@ public class CoffeeDto {
     @Null
     private OffsetDateTime lastModifiedDate;
 
-    @NotNull
+    @NotBlank
     private String coffeeName;
 
     @NotNull
