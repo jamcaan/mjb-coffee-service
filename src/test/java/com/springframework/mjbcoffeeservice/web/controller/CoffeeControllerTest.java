@@ -3,6 +3,7 @@ package com.springframework.mjbcoffeeservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springframework.mjbcoffeeservice.web.model.CoffeeDto;
+import com.springframework.mjbcoffeeservice.web.model.CoffeeStyleEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -35,7 +37,7 @@ class CoffeeControllerTest {
 
     @Test
     void saveCoffee() throws Exception {
-        CoffeeDto coffeeDto = CoffeeDto.builder().build();
+        CoffeeDto coffeeDto = getValidCoffeeDto();
         String coffeeDtoJson = objectMapper.writeValueAsString(coffeeDto);
 
         mockMvc.perform(post("/api/v1/coffee/")
@@ -47,17 +49,21 @@ class CoffeeControllerTest {
 
     @Test
     void updateCoffeeById() throws Exception {
-        CoffeeDto coffeeDto = CoffeeDto.builder().build();
+        CoffeeDto coffeeDto = getValidCoffeeDto();
         String coffeeDtoJson = objectMapper.writeValueAsString(coffeeDto);
 
         mockMvc.perform(put("/api/v1/coffee/" + UUID.randomUUID().toString())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(coffeeDtoJson))
                 .andExpect(status().isNoContent());
+    }
 
-
-
-
-
+    CoffeeDto getValidCoffeeDto (){
+        return CoffeeDto.builder()
+                .coffeeName("My Coffee")
+                .coffeeStyle(CoffeeStyleEnum.ARABICA)
+                .price(new BigDecimal( "15.99"))
+                .upc(123456789022L)
+                .build();
     }
 }
