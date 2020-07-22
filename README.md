@@ -1,2 +1,2 @@
 # MJB Coffee Service
-Brewing company using Spring boot Microservices. 
+Brewing application using Spring boot Microservices. 
