@@ -45,6 +45,8 @@ public class CoffeeLoader implements CommandLineRunner {
                     .build());
         }
 
+        System.out.println("Loaded objects: ");
+
 
     }
 
