@@ -7,8 +7,9 @@ jobs:
     docker:
       - image: circleci/openjdk:11-browsers-legacy
         environment:
-          POSTGRES_USER: root
-          POSTGRES_DB: circle_test
+#          POSTGRES_USER: root
+#          POSTGRES_DB: circle_test
+          MAVEN_OPTS: -Xmx3200m
 
     steps:
 
