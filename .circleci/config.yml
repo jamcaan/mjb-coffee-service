@@ -15,14 +15,17 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: mjb-coffee-service-{{ checksum "pom.xml" }}
+          key:
+            -v1-dependencies-{{ checksum "pom.xml" }}
+            -v1-dependencies-
 
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: mjb-coffee-service-{{ checksum "pom.xml" }}
+          key:
+            -v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mvn integration-test
 
@@ -30,4 +33,4 @@ jobs:
           path: target/surefire-reports
 
       - store_artifacts:
-          path: target/mjb-coffee-service-0.0.1-SNAPSHOT.war
+          path: target/mjb-coffee-service-0.0.1-SNAPSHOT.jar
