@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~/circleci-demo-java-spring
+    working_directory: ~/mjb-coffee-service
 
     docker:
       - image: circleci/openjdk:11-browsers-legacy
@@ -15,19 +15,19 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: mjb-coffee-service-{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: mjb-coffee-service-{{ checksum "pom.xml" }}
 
-      - run: mvn package
+      - run: mvn integration-test
 
       - store_test_results:
           path: target/surefire-reports
 
       - store_artifacts:
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.war
+          path: target/mjb-coffee-service-0.0.1-SNAPSHOT.war
