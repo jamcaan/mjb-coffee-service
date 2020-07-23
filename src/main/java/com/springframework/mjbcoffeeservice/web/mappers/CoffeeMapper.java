@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(uses = {DateMapper.class})
 public interface CoffeeMapper {
 
-    CoffeeDto CoffeeToCoffeeDto (Coffee coffee);
-    Coffee CoffeeDtoToCoffee(CoffeeDto dto);
+    CoffeeDto coffeeToCoffeeDto (Coffee coffee);
+    Coffee coffeeDtoToCoffee(CoffeeDto dto);
 }
